@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+  This plugin gives admins the ability to set node and resource labels on a schedule.
+</div>

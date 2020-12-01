@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.609.1</version>
+        <relativePath />
+    </parent>
+
+    <artifactId>label-manager</artifactId>
+    <version>${revision}${changelist}</version>
+    <name>Label Manager</name>
+    <description>
+        Allows admins to change node and resource labels on a schedule
+    </description>
+    <packaging>hpi</packaging>
+    <!-- <url>https://wiki.jenkins-ci.org/display/JENKINS/</url> -->
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>http://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <revision>1.2</revision>
+        <changelist>-SNAPSHOT</changelist>
+        <jenkins.version>1.651.1</jenkins.version>
+        <java.level>8</java.level>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>mrjameswillis</id>
+            <name>James Willis</name>
+            <email>jameswillis.cs@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:ssh://github.com/mrjameswillis/label-manager-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/mrjameswillis/label-manager-plugin.git</developerConnection>
+        <url>https://github.com/mrjameswillis/label-manager-plugin</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>access-modifier-suppressions</artifactId>
+            <version>1.16</version>
+        </dependency>
+        <!-- Testing scope -->
+        <dependency><!-- Required when testing against core > 1.575 -->
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>junit</artifactId>
+            <version>1.13</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>maven.jenkins-ci.org</id>
+            <name>jenkinsci-releases</name>
+            <url>https://repo.jenkins-ci.org/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven.jenkins-ci.org</id>
+            <name>jenkinsci-snapshots</name>
+            <url>https://repo.jenkins-ci.org/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+          <id>repo.jenkins-ci.org-public</id>
+          <url>https://repo.jenkins-ci.org/public/</url>
+        </repository>
+        <repository>
+          <id>repo.jenkins-ci.org-releases</id>
+          <url>https://repo.jenkins-ci.org/releases/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

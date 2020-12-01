@@ -1,0 +1,36 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+	<l:layout permission="${app.ADMINISTER}" title="${it.displayName}" norefresh="true">
+		<st:include it="${app}" page="sidepanel.jelly"/>
+
+		<l:main-panel>
+			<h1>
+				<!-- <img src="${imagesURL}/48x48/${it.iconFileName}" alt=""/> -->
+				<img src="${imagesURL}/48x48/network.png" alt=""/>
+				${it.displayName}!
+			</h1>
+
+			<f:form name="frmConfig" method="post" action="configSubmit">
+				<j:set var="config" value="${it.manager}" />
+                <j:set var="descriptor" value="${it.descriptor}" />
+
+                <f:entry>
+                    <f:repeatable name="cronsInList" var="instance" items="${config.crons}" header="${%Cron}" minimum="0" add="${%Add Cron}">
+                        <j:set var="descriptor" value="${instance.descriptor}" />
+                        <table min-width="700px">
+                            <st:include it="${config}" page="/org/jenkins/plugins/labelmanager/model/LabelCron/config.jelly" />
+                            <!-- <st:include page="config.jelly" class="org.jenkins.plugins.labelmanager.model.LabelCron"/>  -->
+                            <f:entry title="">
+                                <div align="right"><f:repeatableDeleteButton/></div>
+                            </f:entry>
+                        </table>
+                    </f:repeatable>
+                </f:entry>
+
+				<f:bottomButtonBar>
+                    <f:submit name="saveButton" value="${%Save}"/>
+                </f:bottomButtonBar>
+            </f:form>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>

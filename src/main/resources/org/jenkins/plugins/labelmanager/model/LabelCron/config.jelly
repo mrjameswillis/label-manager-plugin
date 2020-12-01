@@ -1,0 +1,37 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="${%Name}" field="name" help="/plugin/label-manager/help/help-labelCron-name.html">
+        <f:textbox value="${instance[field]}" checkUrl="'labelCronDescriptor/checkName?value='+encodeURIComponent(this.value)"/>
+    </f:entry>
+    <f:entry title="${%Cron}" field="cron" help="/plugin/label-manager/help/help-labelCron-cron.html">
+        <f:textbox value="${instance[field]}" checkUrl="'labelCronDescriptor/checkCron?value='+encodeURIComponent(this.value)"/>
+    </f:entry>
+    <f:entry title="${%Action}" field="labelAction" help="/plugin/label-manager/help/help-labelCron-labelAction.html">
+        <select class="setting-input" name="${field}">
+            <f:option value="ADD" selected="${instance != null ? instance[field].name()=='ADD' : false}">Add</f:option>
+            <f:option value="REMOVE" selected="${instance != null ? instance[field].name()=='REMOVE' : false}">Remove</f:option>
+            <f:option value="REPLACE" selected="${instance != null ? instance[field].name()=='REPLACE' : true}">Replace</f:option>
+        </select>
+        <!--
+        <f:enum field="labelAction">
+            ${it.toString()}
+        </f:enum>
+        -->
+    </f:entry>
+    <f:entry title="${%Labels}" field="labelString" help="/plugin/label-manager/help/help-labelCron-labelString.html">
+        <f:textbox autoCompleteDelimChar=" " value="${instance[field]}" checkUrl="'labelCronDescriptor/checkLabelString?value='+encodeURIComponent(this.value)"/>
+    </f:entry>
+    <f:entry title="${%Nodes}" field="typeString" help="/plugin/label-manager/help/help-labelCron-typeString.html">
+        <f:textbox autoCompleteDelimChar=" " value="${instance[field]}" checkUrl="'labelCronDescriptor/checkTypeString?value='+encodeURIComponent(this.value)"/>
+        <!--
+         | ${%Resources}
+        <f:repeatable field="properties" header="${%Node}" minimum="0" add="${%Add Node}">
+            <st:include page="config.jelly" class="org.jenkins.plugins.labelmanager.model.type.NodeType"/>
+        </f:repeatable>
+        <f:repeatable field="properties" header="${%Resource}" minimum="0" add="${%Add Resource}">
+            <st:include page="config.jelly" class="org.jenkins.plugins.labelmanager.model.type.ResourceType"/>
+        </f:repeatable>
+        -->
+    </f:entry>
+</j:jelly>
